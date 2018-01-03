@@ -180,8 +180,7 @@ nnoremap <leader>c :cclose<bar>lclose<cr>
 nmap <leader>ct <esc>:retab<cr>
 
 "设置状态栏显示的内容
-"set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [POS=%l,%v][%p%%]\
-"%{strftime(\"%d/%m/%y\ -\ %H:%M\")}\ %{ALEGetStatusLine()}
+set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [POS=%l,%v][%p%%]\ %{strftime(\"%d/%m/%y\ -\ %H:%M\")}\ %{ALEGetStatusLine()}
 
 "F2可打印字符显示开关
 nnoremap <F2> :set list! list?<CR>
@@ -239,7 +238,66 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 Plugin 'VundleVim/Vundle.vim'
+Plugin 'scrooloose/nerdtree'
+Plugin 'Yggdroot/indentLine'
+Plugin 'vim-airline/vim-airline'
+Plugin 'majutsushi/tagbar'
 
 call vundle#end()
 
+"The NERD tree
+"F3触发，设置宽度为30,显示书签
+map <F3> :NERDTreeToggle<CR>
+let NERDTreeWinSize = 30
+let NERDTreeShowBookmarks = 1
+"高亮当前行
+let NERDTreeHighlightCursorline = 1
+"从NERDTree打开文件后自动关闭NERDTree
+let NERDTreeQuitOnOpen = 1
+"显示隐藏文件
+let g:NERDTreeShowHidden = 1
+"忽略特定文件和目录
+let NERDTreeIgnore=[ '\.pyc$', '\.pyo$', '\.py\$class$', '\.obj$',
+                \ '\.o$', '\.so$', '\.egg$', '^\.git$', '__pycache__', '\.DS_Store' ]
+"显示行号
+"let NERDTreeShowLineNumbers = 1
+"let NERDTreeAutoCenter = 1
+"自动打开NERDTree
+"autocmd vimenter * NERDTree
 
+"indentLine
+let g:indentLine_char='┆'
+"let g:indentLine_enabled = 1
+map <C-i> :IndentLinesToggle<CR>
+
+"airline
+"安装字体后必须设置
+let g:airline_powerline_fonts = 1
+"关闭tabline
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#buffer_nr_show = 4
+let g:airline#extensions#tabline#fnamemod = ':t'
+if !exists('g:airline_symbols')
+let g:airline_symbols = {}
+endif
+"powerline symbols
+let g:airline_left_sep = ''
+let g:airline_left_alt_sep = ''
+let g:airline_right_sep = ''
+let g:airline_right_alt_sep = ''
+let g:airline_symbols.branch = ''
+let g:airline_symbols.readonly = '⭤'
+let g:airline_symbols.linenr = ''
+nnoremap <C-N> :bn<CR>
+nnoremap <C-P> :bp<CR>
+"m，d，y，H，M分别表示月，日，年，时，分，也就是相应英文的首字母
+let g:airline_section_b = '%{strftime("%m/%d/%y - %H:%M")}'
+
+"tagbar
+"F10触发，设置宽度为30
+"let g:tagbar_width = 30
+nmap <F10> :TagbarToggle<CR>
+"开启自动预览(随着光标在标签上的移动，顶部会出现一个实时的预览窗口)
+"let g:tagbar_autopreview = 1
+"关闭排序,即按标签本身在文件中的位置排序
+let g:tagbar_sort = 0
