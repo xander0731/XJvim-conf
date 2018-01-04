@@ -86,9 +86,6 @@ set nowrap
 "设置退出插入模式后自动保存
 "set autowrite
 
-"允许插件
-filetype plugin on
-
 "共享剪贴板
 set clipboard+=unnamed
 
@@ -112,9 +109,6 @@ set autoindent
 set cindent
 set smartindent
 set shiftwidth=4
-
-"为特定文件类型载入相关缩进文件
-filetype indent on
 
 "设置默认文件编码为utf-8
 set fenc=utf-8
@@ -193,7 +187,7 @@ map <F5> :call CompileRunGcc()<CR>
 func! CompileRunGcc()
     exec "w"
     if &filetype == 'python'
-        exec "!time python2.7 %"
+        exec "!time python3.5 %"
     elseif &filetype == 'sh'
         :!time bash %
     endif
@@ -209,25 +203,26 @@ func SetTitle()
         call setline(1,"#!/usr/bin/env python")
         call append(line("."),"# coding=utf-8")
         call append(line(".")+1, "")
-    elseif expand("%:e") == 'cpp'
-        call setline(1,"#include <iostream>")
-        call append(line("."), "")
-    elseif expand("%:e") == 'cc'
-        call setline(1,"#include <iostream>")
-        call append(line("."), "")
-    elseif expand("%:e") == 'c'
-        call setline(1,"#include <stdio.h>")
-        call append(line("."), "")
-    elseif expand("%:e") == 'h'
-        call setline(1, "#pragma once")
-    elseif expand("%:e") == 'hpp'
-        call setline(1, "#pragma once")
+"   elseif expand("%:e") == 'cpp'
+"       call setline(1,"#include <iostream>")
+"       call append(line("."), "")
+"   elseif expand("%:e") == 'cc'
+"       call setline(1,"#include <iostream>")
+"       call append(line("."), "")
+"   elseif expand("%:e") == 'c'
+"       call setline(1,"#include <stdio.h>")
+"       call append(line("."), "")
+"   elseif expand("%:e") == 'h'
+"       call setline(1, "#pragma once")
+"   elseif expand("%:e") == 'hpp'
+"       call setline(1, "#pragma once")
     endif
 endfunc
 autocmd BufNewFile * normal G
 
 "required
-filetype off
+"文件侦查启动,用以检测文件的后缀
+filetype on
 
 
 "set the runtime path to include Vundle and initialize
@@ -295,9 +290,16 @@ let g:airline_section_b = '%{strftime("%m/%d/%y - %H:%M")}'
 
 "tagbar
 "F10触发，设置宽度为30
-"let g:tagbar_width = 30
+let g:tagbar_width = 30
 nmap <F10> :TagbarToggle<CR>
 "开启自动预览(随着光标在标签上的移动，顶部会出现一个实时的预览窗口)
-"let g:tagbar_autopreview = 1
+let g:tagbar_autopreview = 1
 "关闭排序,即按标签本身在文件中的位置排序
 let g:tagbar_sort = 0
+"设置tagbar使用的ctags的插件,必须要设置对
+let g:tagbar_ctags_bin='/usr/bin/ctags'
+"设置tagbar的窗口显示的位置,为左边  
+"let g:tagbar_left=1  
+"打开文件自动 打开tagbar  
+"autocmd BufReadPost *.cpp,*.c,*.h,*.hpp,*.cc,*.cxx,*.py call tagbar#autoopen()
+

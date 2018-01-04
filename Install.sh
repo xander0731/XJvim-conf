@@ -1,5 +1,12 @@
 #/bin/bash
 
+# Install vim8
+#sudo apt-get -y install python-software-properties
+#sudo apt-get -y install software-properties-common
+#sudo add-apt-repository ppa:jonathonf/vim
+#sudo apt-get update
+#sudo apt-get -y install vim
+
 # 创建链接
 ln -s $(pwd)/vimrc ~/.vimrc
 ln -s $(pwd)/vim ~/.vim
