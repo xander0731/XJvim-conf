@@ -152,6 +152,11 @@ nnoremap k <Down>
 nnoremap i <Up>
 nnoremap l <Right>
 
+vnoremap j <Left>
+vnoremap k <Down>
+vnoremap i <Up>
+vnoremap l <Right>
+
 "修改hjkl方向键
 inoremap <C-j> <Left>
 inoremap <C-k> <Down>
@@ -162,11 +167,12 @@ inoremap <C-l> <Right>
 let mapleader = "\<space>"
 let g:mapleader = "\<space>"
 
-"设置插入模式和可视模式下的退出键
-inoremap jj <Esc>:w<cr>
-vnoremap jj <Esc>
+" 设置插入模式和可视模式下的退出键
+" inoremap jj <Esc>:w<cr>
+" vnoremap jj <Esc>
+nnoremap <C-s> <esc>:wq<CR>
 
-"全选
+" 全选
 map <Leader>a ggVG
 
 "全选并复制到系统剪贴板
@@ -350,8 +356,9 @@ let g:rainbow_conf = {
 \   }
 \}
 
-inoremap ' ''<ESC>i
-inoremap " ""<ESC>i
-inoremap ( ()<ESC>i
-inoremap [ []<ESC>i
-inoremap { {<CR>}<ESC>O
+" 补齐括号引号
+inoremap ' ''<Left>
+inoremap " ""<Left>
+inoremap ( ()<Left>
+inoremap [ []<Left>
+inoremap { {}<Left>
