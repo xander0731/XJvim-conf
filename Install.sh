@@ -32,3 +32,9 @@ sudo apt-get -y install ctags
 
 # Install tagbar
 git clone https://github.com/majutsushi/tagbar.git ~/.vim/bundle/tagbar
+
+# Install vim-commentary
+git clone git://github.com/tpope/vim-commentary.git
+
+# Install rainbow
+git clone git://github.com/luochen1990/rainbow.git
