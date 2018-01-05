@@ -5,6 +5,7 @@ autocmd! bufwritepost .vimrc source %
 "autocmd! bufwritepost _vimrc source %
 
 "设置backspace行为
+
 set backspace=indent,eol,start
 
 "显示行号
@@ -139,10 +140,23 @@ nnoremap <C-t>     :tabnew<CR>
 inoremap <C-t> <Esc>:tabnew<CR>
 
 "修改分屏移动快捷键
-map <C-j> <C-W>j
-map <C-k> <C-W>k
-map <C-h> <C-W>h
+map <C-k> <C-W>j
+map <C-i> <C-W>k
+map <C-j> <C-W>h
 map <C-l> <C-W>l
+
+"修改方向键为jkli,并更改模式i键为h
+nnoremap h i
+nnoremap j <Left>
+nnoremap k <Down>
+nnoremap i <Up>
+nnoremap l <Right>
+
+"修改hjkl方向键
+inoremap <C-j> <Left>
+inoremap <C-k> <Down>
+inoremap <C-i> <Up>
+inoremap <C-l> <Right>
 
 "修改leader键为空格键
 let mapleader = "\<space>"
